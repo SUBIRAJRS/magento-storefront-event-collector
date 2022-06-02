@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { configure, hasConfig } from "./alloy";
+import { configure, hasConfig, setConsent } from "./alloy";
 import { subscribeToEvents } from "./events";
 import { configureSnowplow } from "./snowplow";
 
@@ -11,6 +11,9 @@ const initializeAlloy = async () => {
         }
 
         await configure();
+
+        // start polling every second to look for changes
+        setInterval(setConsent, 1000);
     } catch (error) {
         console.warn("Alloy could not be configured.");
     }

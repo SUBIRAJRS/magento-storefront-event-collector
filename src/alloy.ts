@@ -83,6 +83,10 @@ const hasConfig = (): boolean => {
     );
 };
 
+/**
+ * checks to see if the mg_dnt cookie is set and will set the consent
+ * on the alloy instance
+ */
 const setConsent = async (): Promise<void> => {
     const doNotTrackCookie = document.cookie.indexOf("mg_dnt") !== -1;
     const instance = await getAlloy();
@@ -100,8 +104,5 @@ const setConsent = async (): Promise<void> => {
     });
 };
 
-//start polling every second to look for changes
-setInterval(setConsent, 1000);
-
 /** preconfigured alloy instance that allows us to send an event */
-export { configure, getAlloy, hasConfig, sendEvent };
+export { configure, getAlloy, hasConfig, sendEvent, setConsent };
