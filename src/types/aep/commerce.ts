@@ -30,6 +30,7 @@ export type Order = {
     payments: Payment[];
     priceTotal?: number;
     currencyCode?: string;
+    orderType?: "checkout" | "instant_purchase";
 };
 
 export type Shipping = {

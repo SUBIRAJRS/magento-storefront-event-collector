@@ -34,6 +34,7 @@ const createOrder = (
         purchaseID: orderContext.orderId.toString(),
         currencyCode: storefrontInstanceContext.storeViewCurrencyCode,
         payments,
+        orderType: orderContext.orderType,
     };
 };
 

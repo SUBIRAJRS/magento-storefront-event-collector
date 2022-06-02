@@ -54,6 +54,7 @@ const mockOrder: Order = {
     email: "example@email.com",
     grandTotal: 69.98,
     orderId: 111111,
+    orderType: "checkout",
     otherTax: 0.0,
     paymentMethodCode: "credit card",
     paymentMethodName: "visa",
