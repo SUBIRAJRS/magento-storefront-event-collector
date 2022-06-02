@@ -3,7 +3,7 @@ import { Event } from "@adobe/magento-storefront-events-sdk/dist/types/types/eve
 import { sendEvent } from "../../alloy";
 import { BeaconSchema } from "../../types/aep";
 
-const XDM_EVENT_TYPE = "account.createProfile";
+const XDM_EVENT_TYPE = "userAccount.createProfile";
 const aepHandler = async (event: Event): Promise<void> => {
     const { debugContext, accountContext, customContext } = event.eventInfo;
 

@@ -8,7 +8,7 @@ import { sendEvent } from "../../alloy";
 import { createSearchInputCtx } from "../../contexts";
 import { BeaconSchema, Filter, Sort } from "../../types/aep";
 
-const XDM_EVENT_TYPE = "commerce.searchRequest";
+const XDM_EVENT_TYPE = "searchRequest";
 
 const handler = async (event: Event): Promise<void> => {
     const { searchUnitId, searchInputContext, debugContext, customContext } =
@@ -60,19 +60,15 @@ const handler = async (event: Event): Promise<void> => {
         );
 
         payload = {
-            commerce: {
-                search: {
-                    query: searchInputContext.units[0].phrase,
-                    sort,
-                    refinements: filters,
-                },
+            siteSearch: {
+                query: searchInputContext.units[0].phrase,
+                sort,
+                refinements: filters,
             },
         };
     }
 
-    payload.commerce = payload.commerce || {};
-
-    payload.commerce.searchRequest = {
+    payload.searchRequest = {
         value: 1,
     };
 

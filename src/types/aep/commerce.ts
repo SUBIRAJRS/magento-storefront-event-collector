@@ -9,9 +9,6 @@ export type Commerce = {
     order?: Order;
     promotionID?: string;
     productViews?: ProductView;
-    search?: Search;
-    searchRequest?: SearchRequest;
-    searchResponse?: SearchResponse;
     shipping?: Shipping;
 };
 
@@ -66,32 +63,5 @@ export type ProductListViews = {
 };
 
 export type CartAbandon = {
-    value: number;
-};
-
-export type Search = {
-    query?: string;
-    refinements?: Filter[];
-    sort?: Sort[];
-    suggestions?: string[];
-    numberOfResults?: number;
-};
-
-export type Filter = {
-    attribute: string;
-    value: string[];
-    isRange: boolean;
-};
-
-export type Sort = {
-    attribute: string;
-    order: "ASC" | "DESC";
-};
-
-export type SearchRequest = {
-    value: number;
-};
-
-export type SearchResponse = {
     value: number;
 };

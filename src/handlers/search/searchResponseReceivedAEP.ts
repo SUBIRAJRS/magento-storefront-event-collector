@@ -6,7 +6,7 @@ import { createSearchResultsCtx } from "../../contexts";
 import { BeaconSchema } from "../../types/aep";
 import { SearchResultProduct } from "../../types/contexts";
 
-const XDM_EVENT_TYPE = "commerce.searchResponse";
+const XDM_EVENT_TYPE = "searchResponse";
 
 const handler = async (event: Event): Promise<void> => {
     const { searchUnitId, searchResultsContext, debugContext, customContext } =
@@ -39,20 +39,15 @@ const handler = async (event: Event): Promise<void> => {
         payload = customContext as BeaconSchema;
     } else {
         payload = {
-            commerce: {
-                search: {
-                    suggestions: suggestions,
-                    numberOfResults: searchResultsCtx?.data
-                        ?.productCount as number,
-                },
+            siteSearch: {
+                suggestions: suggestions,
+                numberOfResults: searchResultsCtx?.data?.productCount as number,
             },
             productListItems,
         };
     }
 
-    payload.commerce = payload.commerce || {};
-
-    payload.commerce.searchResponse = {
+    payload.searchResponse = {
         value: 1,
     };
 

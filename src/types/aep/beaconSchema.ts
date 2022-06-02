@@ -13,6 +13,9 @@ export type BeaconSchema = {
     personID?: string;
     personalEmail?: Email;
     userAccount?: AccountActions;
+    searchRequest?: SearchRequest;
+    searchResponse?: SearchResponse;
+    siteSearch?: Search;
 };
 
 export type Account = {
@@ -30,4 +33,31 @@ export type AccountActions = {
     logout?: number;
     createProfile?: number;
     updateProfile?: number;
+};
+
+export type SearchRequest = {
+    value: number;
+};
+
+export type SearchResponse = {
+    value: number;
+};
+
+export type Search = {
+    query?: string;
+    refinements?: Filter[];
+    sort?: Sort[];
+    suggestions?: string[];
+    numberOfResults?: number;
+};
+
+export type Filter = {
+    attribute: string;
+    value: string[];
+    isRange: boolean;
+};
+
+export type Sort = {
+    attribute: string;
+    order: "ASC" | "DESC";
 };
