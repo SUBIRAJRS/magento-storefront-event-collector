@@ -247,6 +247,16 @@ alloy("setConsent", {
 setInterval(setConsent, 1000);
 ```
 
+## PII Data Collection
+
+The following events forward a user's email as PII data to AEP:
+
+`createAccount`
+
+`editAccount`
+
+`signIn`
+
 ## Support
 
 If you have any questions or encounter any issues, please reach out at these locations.
