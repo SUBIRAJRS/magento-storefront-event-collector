@@ -28,7 +28,8 @@ const aepHandler = async (event: Event): Promise<void> => {
                 promotionID: orderContext.appliedCouponCode,
                 shipping: {
                     shippingMethod: orderContext.shipping?.shippingMethod,
-                    shippingAmount: orderContext.shipping?.shippingAmount || 0,
+                    shippingAmount:
+                        Number(orderContext.shipping?.shippingAmount) || 0,
                 },
             },
             productListItems: createProductListItems(
