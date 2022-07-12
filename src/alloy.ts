@@ -22,7 +22,6 @@ const configure = async (): Promise<AlloyInstance> => {
         });
 
         window.alloy = alloyInstance;
-
         return window.alloy;
     } else {
         return Promise.reject();
@@ -90,8 +89,7 @@ const hasConfig = (): boolean => {
 const setConsent = async (): Promise<void> => {
     const doNotTrackCookie = document.cookie.indexOf("mg_dnt") !== -1;
     const instance = await getAlloy();
-
-    instance("setConsent", {
+    await instance("setConsent", {
         consent: [
             {
                 standard: "Adobe",
