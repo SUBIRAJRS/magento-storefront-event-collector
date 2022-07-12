@@ -9,8 +9,13 @@ const XDM_EVENT_TYPE = "commerce.productListAdds";
 /** Sends an event to aep with an addToCart payload */
 const aepHandler = async (event: Event): Promise<void> => {
     // note: the shopping cart context does not include the updated product in the cart
-    const { productContext, shoppingCartContext, debugContext, customContext } =
-        event.eventInfo;
+    const {
+        productContext,
+        shoppingCartContext,
+        debugContext,
+        customContext,
+        storefrontInstanceContext,
+    } = event.eventInfo;
 
     let payload: BeaconSchema;
     if (customContext) {
@@ -31,7 +36,9 @@ const aepHandler = async (event: Event): Promise<void> => {
                         productContext.pricing?.specialPrice ??
                         productContext.pricing?.regularPrice,
                     currencyCode:
-                        productContext.pricing?.currencyCode ?? undefined,
+                        productContext.pricing?.currencyCode ??
+                        storefrontInstanceContext.storeViewCurrencyCode ??
+                        undefined,
                     discountAmount: getDiscountAmount(productContext),
                 },
             ],

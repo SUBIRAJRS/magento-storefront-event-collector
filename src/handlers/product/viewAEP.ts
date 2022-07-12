@@ -7,7 +7,12 @@ import { getDiscountAmount } from "../../utils/discount";
 const XDM_EVENT_TYPE = "commerce.productViews";
 
 const aepHandler = async (event: Event): Promise<void> => {
-    const { productContext, debugContext, customContext } = event.eventInfo;
+    const {
+        productContext,
+        debugContext,
+        customContext,
+        storefrontInstanceContext,
+    } = event.eventInfo;
 
     let payload: BeaconSchema;
     if (customContext) {
@@ -20,7 +25,10 @@ const aepHandler = async (event: Event): Promise<void> => {
             priceTotal:
                 productContext.pricing?.specialPrice ??
                 productContext.pricing?.regularPrice,
-            currencyCode: productContext.pricing?.currencyCode ?? undefined,
+            currencyCode:
+                productContext.pricing?.currencyCode ??
+                storefrontInstanceContext.storeViewCurrencyCode ??
+                undefined,
             discountAmount: getDiscountAmount(productContext),
         };
 
