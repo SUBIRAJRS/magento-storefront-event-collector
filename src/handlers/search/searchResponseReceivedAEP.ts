@@ -34,7 +34,10 @@ const handler = async (event: Event): Promise<void> => {
     );
 
     let payload: BeaconSchema;
-    if (customContext) {
+    if (
+        customContext &&
+        Object.keys(customContext as BeaconSchema).length !== 0
+    ) {
         // override payload on custom context
         payload = customContext as BeaconSchema;
     } else {
