@@ -30,11 +30,17 @@ const createOrder = (
         ];
     }
 
+    // default orderType to 'checkout'
+    const orderType =
+        orderContext.orderType === "instant_purchase"
+            ? "instant_purchase"
+            : "checkout";
+
     return {
         purchaseID: orderContext.orderId.toString(),
         currencyCode: storefrontInstanceContext.storeViewCurrencyCode,
         payments,
-        orderType: orderContext.orderType,
+        orderType,
     };
 };
 
