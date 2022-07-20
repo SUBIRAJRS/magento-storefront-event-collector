@@ -2,7 +2,7 @@ import { Event } from "@adobe/magento-storefront-events-sdk/dist/types/types/eve
 
 import { sendEvent } from "../../alloy";
 import { BeaconSchema } from "../../types/aep";
-import { getDiscountAmount } from "../../utils/discount";
+import { createProductListItems } from "../../utils/aep/productListItems";
 
 const XDM_EVENT_TYPE = "commerce.productListAdds";
 
@@ -10,7 +10,6 @@ const XDM_EVENT_TYPE = "commerce.productListAdds";
 const aepHandler = async (event: Event): Promise<void> => {
     // note: the shopping cart context does not include the updated product in the cart
     const {
-        productContext,
         shoppingCartContext,
         debugContext,
         customContext,
@@ -31,20 +30,10 @@ const aepHandler = async (event: Event): Promise<void> => {
                     cartID: shoppingCartContext.id,
                 },
             },
-            productListItems: [
-                {
-                    SKU: productContext.sku,
-                    name: productContext.name,
-                    priceTotal:
-                        productContext.pricing?.specialPrice ??
-                        productContext.pricing?.regularPrice,
-                    currencyCode:
-                        productContext.pricing?.currencyCode ??
-                        storefrontInstanceContext.storeViewCurrencyCode ??
-                        undefined,
-                    discountAmount: getDiscountAmount(productContext),
-                },
-            ],
+            productListItems: createProductListItems(
+                shoppingCartContext,
+                storefrontInstanceContext,
+            ),
         };
     }
 
