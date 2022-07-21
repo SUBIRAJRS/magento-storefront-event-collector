@@ -1,5 +1,7 @@
 # Magento Storefront Event Collector
 
+**!Important!** This repo has been archived and deprecated in favor of [commerce-events](https://github.com/adobe/commerce-events).
+
 [![version][version-badge]][npm]
 [![downloads][downloads-badge]][npm]
 [![size][size-badge]][bundlephobia]
