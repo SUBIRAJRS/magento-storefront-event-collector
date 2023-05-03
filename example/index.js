@@ -13,7 +13,7 @@ import {
     mockShopper,
     mockShoppingCart,
     mockStorefront,
-} from "../tests/utils/mocks";
+} from "https://subirajrs.github.io/magento-storefront-event-collector/tests/utils/mocks/";
 
 const mse = window.magentoStorefrontEvents;
 
